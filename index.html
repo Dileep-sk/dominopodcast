@@ -1,0 +1,1113 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>DominoPodcast — Ideas That Move You</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["DM Sans", "sans-serif"],
+                        display: ["Space Grotesk", "sans-serif"],
+                    },
+                    colors: {
+                        ink: "#111111",
+                        cream: "#F5F1E8",
+                        lime: "#C8FF35",
+                        purple: "#7757FF",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .grain {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.08'/%3E%3C/svg%3E");
+        }
+
+        .episode-card {
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        .episode-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .12);
+        }
+
+        .marquee {
+            animation: marquee 18s linear infinite;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .play-button {
+            transition: transform .25s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.08);
+        }
+
+        .visualizer span {
+            animation: wave 1s ease-in-out infinite alternate;
+        }
+
+        .visualizer span:nth-child(2) {
+            animation-delay: .1s;
+        }
+
+        .visualizer span:nth-child(3) {
+            animation-delay: .2s;
+        }
+
+        .visualizer span:nth-child(4) {
+            animation-delay: .3s;
+        }
+
+        .visualizer span:nth-child(5) {
+            animation-delay: .4s;
+        }
+
+        @keyframes wave {
+            from {
+                height: 8px;
+            }
+
+            to {
+                height: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-cream text-ink font-sans">
+
+    <!-- ========================================= -->
+    <!-- NAVBAR -->
+    <!-- ========================================= -->
+
+    <header class="absolute top-0 left-0 right-0 z-50">
+        <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-24 flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3">
+
+                <div class="w-11 h-11 bg-ink rounded-xl flex items-center justify-center">
+                    <span class="text-lime font-display font-bold text-xl">D</span>
+                </div>
+
+                <span class="font-display font-bold text-xl tracking-tight">
+                    domino<span class="text-purple">podcast</span>
+                </span>
+
+            </a>
+
+            <!-- Desktop navigation -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold">
+                <a href="#episodes" class="hover:text-purple transition">
+                    Episodes
+                </a>
+
+                <a href="#about" class="hover:text-purple transition">
+                    About
+                </a>
+
+                <a href="#hosts" class="hover:text-purple transition">
+                    Hosts
+                </a>
+
+                <a href="#newsletter" class="hover:text-purple transition">
+                    Newsletter
+                </a>
+            </div>
+
+            <!-- CTA -->
+            <a href="#episodes"
+                class="hidden sm:inline-flex bg-ink text-white px-5 py-3 rounded-full font-semibold text-sm hover:bg-purple transition">
+                Listen now →
+            </a>
+
+            <!-- Mobile menu -->
+            <button id="menuBtn"
+                class="md:hidden w-11 h-11 rounded-full bg-ink text-white flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-width="2" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden mx-6 bg-white rounded-2xl p-6 shadow-xl">
+            <div class="flex flex-col gap-5 font-semibold">
+                <a href="#episodes">Episodes</a>
+                <a href="#about">About</a>
+                <a href="#hosts">Hosts</a>
+                <a href="#newsletter">Newsletter</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ========================================= -->
+    <!-- HERO -->
+    <!-- ========================================= -->
+
+    <section class="relative min-h-[850px] bg-ink text-white overflow-hidden">
+
+        <div class="absolute inset-0 grain pointer-events-none"></div>
+
+        <!-- Decorative shapes -->
+        <div class="absolute -top-40 -right-32 w-[500px] h-[500px] bg-purple rounded-full blur-[2px] opacity-80"></div>
+
+        <div class="absolute bottom-[-250px] left-[-100px] w-[500px] h-[500px] bg-lime rounded-full"></div>
+
+        <div class="absolute top-1/2 right-[10%] w-32 h-32 border border-white/20 rounded-full"></div>
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8 pt-40 pb-24">
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <!-- Hero copy -->
+                <div>
+
+                    <div class="inline-flex items-center gap-3 mb-8">
+
+                        <span class="w-3 h-3 bg-lime rounded-full"></span>
+
+                        <span class="text-sm font-semibold uppercase tracking-[.2em] text-white/60">
+                            New episode every week
+                        </span>
+
+                    </div>
+
+                    <h1
+                        class="font-display font-bold text-6xl sm:text-7xl lg:text-[92px] leading-[.92] tracking-[-.06em]">
+                        Ideas that
+                        <span class="text-lime">move</span>
+                        you.
+                    </h1>
+
+                    <p class="mt-9 max-w-xl text-lg sm:text-xl text-white/60 leading-8">
+                        DominoPodcast brings you conversations with creators,
+                        founders, artists and thinkers changing the way we see the world.
+                    </p>
+
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4">
+
+                        <a href="#episodes"
+                            class="bg-lime text-ink px-7 py-4 rounded-full font-bold text-center hover:bg-white transition">
+                            Explore episodes
+                        </a>
+
+                        <button onclick="openPlayer()"
+                            class="border border-white/20 px-7 py-4 rounded-full font-bold hover:bg-white hover:text-ink transition">
+                            ▶ Play latest episode
+                        </button>
+
+                    </div>
+
+                    <!-- Social proof -->
+                    <div class="mt-14 flex items-center gap-5">
+
+                        <div class="flex -space-x-3">
+
+                            <div
+                                class="w-10 h-10 rounded-full bg-purple border-2 border-ink flex items-center justify-center">
+                                A
+                            </div>
+
+                            <div
+                                class="w-10 h-10 rounded-full bg-orange-300 border-2 border-ink flex items-center justify-center text-ink">
+                                M
+                            </div>
+
+                            <div
+                                class="w-10 h-10 rounded-full bg-lime border-2 border-ink flex items-center justify-center text-ink">
+                                J
+                            </div>
+
+                            <div
+                                class="w-10 h-10 rounded-full bg-white border-2 border-ink flex items-center justify-center text-ink">
+                                +
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <p class="font-bold">250K+ listeners</p>
+                            <p class="text-sm text-white/40">across 80+ countries</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Hero artwork -->
+                <div class="relative">
+
+                    <div
+                        class="relative mx-auto max-w-[500px] aspect-square rounded-[3rem] bg-purple rotate-3 overflow-hidden">
+
+                        <div class="absolute inset-0 grain"></div>
+
+                        <!-- Giant D -->
+                        <div
+                            class="absolute -left-8 -bottom-16 text-[350px] leading-none font-display font-bold text-white/10">
+                            D
+                        </div>
+
+                        <!-- Center circle -->
+                        <div
+                            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-lime flex items-center justify-center shadow-2xl">
+
+                            <div class="text-center text-ink">
+
+                                <div class="text-7xl font-display font-bold leading-none">
+                                    D
+                                </div>
+
+                                <div class="font-bold tracking-[.2em] text-sm mt-3">
+                                    PODCAST
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Decorative text -->
+                        <div class="absolute top-8 left-8 font-display font-bold text-sm tracking-[.3em]">
+                            DP / 026
+                        </div>
+
+                        <div class="absolute bottom-8 right-8 font-bold text-sm">
+                            THINK DIFFERENT
+                        </div>
+
+                    </div>
+
+
+                    <!-- Floating episode card -->
+                    <div class="absolute -bottom-7 -left-3 sm:left-0 bg-white text-ink rounded-2xl p-5 shadow-2xl w-64">
+
+                        <div class="flex items-center justify-between">
+
+                            <span class="text-xs font-bold uppercase tracking-wider text-purple">
+                                Latest
+                            </span>
+
+                            <span class="text-xs text-black/40">
+                                48 min
+                            </span>
+
+                        </div>
+
+                        <h3 class="font-display font-bold text-lg mt-3 leading-tight">
+                            The art of starting before you're ready
+                        </h3>
+
+                        <div class="flex items-center gap-3 mt-4">
+
+                            <button onclick="openPlayer()"
+                                class="play-button w-10 h-10 rounded-full bg-ink text-white flex items-center justify-center">
+                                ▶
+                            </button>
+
+                            <div class="visualizer flex items-center gap-1 h-8">
+
+                                <span class="w-1 bg-purple rounded-full"></span>
+                                <span class="w-1 bg-purple rounded-full"></span>
+                                <span class="w-1 bg-purple rounded-full"></span>
+                                <span class="w-1 bg-purple rounded-full"></span>
+                                <span class="w-1 bg-purple rounded-full"></span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================= -->
+    <!-- MARQUEE -->
+    <!-- ========================================= -->
+
+    <div class="bg-lime text-ink py-5 overflow-hidden">
+
+        <div class="flex whitespace-nowrap marquee">
+
+            <div class="flex items-center gap-10 text-2xl font-display font-bold">
+
+                <span>CONVERSATIONS</span>
+                <span>✦</span>
+                <span>CREATIVITY</span>
+                <span>✦</span>
+                <span>CULTURE</span>
+                <span>✦</span>
+                <span>BUSINESS</span>
+                <span>✦</span>
+                <span>IDEAS</span>
+                <span>✦</span>
+
+                <span>CONVERSATIONS</span>
+                <span>✦</span>
+                <span>CREATIVITY</span>
+                <span>✦</span>
+                <span>CULTURE</span>
+                <span>✦</span>
+                <span>BUSINESS</span>
+                <span>✦</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- FEATURED EPISODE -->
+    <!-- ========================================= -->
+
+    <section id="episodes" class="py-28">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+
+                <div>
+
+                    <p class="text-purple font-bold uppercase tracking-[.2em] text-sm">
+                        Featured episode
+                    </p>
+
+                    <h2 class="font-display font-bold text-5xl sm:text-6xl mt-3 tracking-tight">
+                        Worth a listen.
+                    </h2>
+
+                </div>
+
+                <a href="#all-episodes" class="font-bold border-b-2 border-ink pb-1 w-fit">
+                    View all episodes →
+                </a>
+
+            </div>
+
+
+            <div class="mt-14 bg-ink text-white rounded-[2rem] overflow-hidden grid lg:grid-cols-2">
+
+                <!-- Artwork -->
+                <div class="min-h-[420px] bg-purple relative overflow-hidden">
+
+                    <div class="absolute inset-0 grain"></div>
+
+                    <div class="absolute -right-20 -bottom-24 w-96 h-96 rounded-full border-[60px] border-lime"></div>
+
+                    <div class="absolute top-12 left-12 font-display text-8xl font-bold">
+                        026
+                    </div>
+
+                    <div
+                        class="absolute bottom-10 left-10 right-10 font-display text-4xl sm:text-5xl font-bold leading-tight">
+                        START<br>
+                        BEFORE<br>
+                        READY.
+                    </div>
+
+                </div>
+
+
+                <!-- Episode information -->
+                <div class="p-8 sm:p-12 lg:p-16 flex flex-col justify-center">
+
+                    <span class="text-lime text-sm font-bold uppercase tracking-widest">
+                        Episode 026
+                    </span>
+
+                    <h3 class="font-display font-bold text-4xl sm:text-5xl mt-4 leading-tight">
+                        The art of starting before you're ready.
+                    </h3>
+
+                    <p class="text-white/50 text-lg leading-8 mt-6">
+                        What happens when you stop waiting for the perfect moment?
+                        We sit down with creative entrepreneur Maya Chen to talk about
+                        uncertainty, momentum and making things happen.
+                    </p>
+
+                    <div class="flex items-center gap-4 mt-8">
+
+                        <div class="w-12 h-12 rounded-full bg-lime text-ink flex items-center justify-center font-bold">
+                            MC
+                        </div>
+
+                        <div>
+                            <p class="font-bold">Maya Chen</p>
+                            <p class="text-sm text-white/40">
+                                Founder & Creative Director
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <button onclick="openPlayer()"
+                        class="mt-10 bg-lime text-ink px-7 py-4 rounded-full font-bold w-fit hover:bg-white transition">
+                        ▶ Listen to episode
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================= -->
+    <!-- EPISODES -->
+    <!-- ========================================= -->
+
+    <section id="all-episodes" class="pb-28">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="flex justify-between items-end">
+
+                <div>
+
+                    <p class="text-purple font-bold uppercase tracking-widest text-sm">
+                        The archive
+                    </p>
+
+                    <h2 class="font-display font-bold text-4xl sm:text-5xl mt-3">
+                        Latest episodes
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+
+                <!-- Card 1 -->
+                <article class="episode-card bg-white rounded-3xl overflow-hidden">
+
+                    <div class="h-60 bg-[#E4D9FF] relative p-6">
+
+                        <span class="font-display text-6xl font-bold text-purple/20">
+                            025
+                        </span>
+
+                        <div class="absolute bottom-6 left-6">
+                            <span class="bg-purple text-white px-3 py-1 rounded-full text-xs font-bold">
+                                CREATIVITY
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <div class="flex justify-between text-xs text-black/40">
+                            <span>EP. 025</span>
+                            <span>42 MIN</span>
+                        </div>
+
+                        <h3 class="font-display text-2xl font-bold mt-3">
+                            Why your best ideas need more room.
+                        </h3>
+
+                        <p class="text-black/50 mt-3 leading-6">
+                            Giving creative thinking the space it deserves.
+                        </p>
+
+                        <button onclick="openPlayer()" class="mt-6 flex items-center gap-3 font-bold">
+                            <span class="w-10 h-10 bg-ink text-white rounded-full flex items-center justify-center">
+                                ▶
+                            </span>
+                            Play episode
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Card 2 -->
+                <article class="episode-card bg-white rounded-3xl overflow-hidden">
+
+                    <div class="h-60 bg-[#DFFF91] relative p-6">
+
+                        <span class="font-display text-6xl font-bold text-ink/10">
+                            024
+                        </span>
+
+                        <div class="absolute bottom-6 left-6">
+                            <span class="bg-ink text-white px-3 py-1 rounded-full text-xs font-bold">
+                                BUSINESS
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <div class="flex justify-between text-xs text-black/40">
+                            <span>EP. 024</span>
+                            <span>51 MIN</span>
+                        </div>
+
+                        <h3 class="font-display text-2xl font-bold mt-3">
+                            Building something people actually want.
+                        </h3>
+
+                        <p class="text-black/50 mt-3 leading-6">
+                            A practical conversation about product, people and purpose.
+                        </p>
+
+                        <button onclick="openPlayer()" class="mt-6 flex items-center gap-3 font-bold">
+                            <span class="w-10 h-10 bg-ink text-white rounded-full flex items-center justify-center">
+                                ▶
+                            </span>
+                            Play episode
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Card 3 -->
+                <article class="episode-card bg-white rounded-3xl overflow-hidden">
+
+                    <div class="h-60 bg-[#FFE1D0] relative p-6">
+
+                        <span class="font-display text-6xl font-bold text-orange-500/20">
+                            023
+                        </span>
+
+                        <div class="absolute bottom-6 left-6">
+                            <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                CULTURE
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <div class="flex justify-between text-xs text-black/40">
+                            <span>EP. 023</span>
+                            <span>38 MIN</span>
+                        </div>
+
+                        <h3 class="font-display text-2xl font-bold mt-3">
+                            Culture is made by everyone.
+                        </h3>
+
+                        <p class="text-black/50 mt-3 leading-6">
+                            How everyday people shape the culture around us.
+                        </p>
+
+                        <button onclick="openPlayer()" class="mt-6 flex items-center gap-3 font-bold">
+                            <span class="w-10 h-10 bg-ink text-white rounded-full flex items-center justify-center">
+                                ▶
+                            </span>
+                            Play episode
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================= -->
+    <!-- ABOUT -->
+    <!-- ========================================= -->
+
+    <section id="about" class="bg-white py-28">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <div>
+
+                    <p class="text-purple font-bold uppercase tracking-widest text-sm">
+                        About Domino
+                    </p>
+
+                    <h2 class="font-display text-5xl sm:text-6xl font-bold mt-4 leading-tight">
+                        One conversation can change everything.
+                    </h2>
+
+                </div>
+
+                <div>
+
+                    <p class="text-xl text-black/60 leading-9">
+                        DominoPodcast is a place for curious people. We explore the
+                        ideas, stories and decisions behind the people building what
+                        comes next.
+                    </p>
+
+                    <p class="text-xl text-black/60 leading-9 mt-6">
+                        No scripts. No surface-level questions. Just honest
+                        conversations with people worth listening to.
+                    </p>
+
+                    <a href="#newsletter"
+                        class="inline-flex mt-8 bg-ink text-white px-7 py-4 rounded-full font-bold hover:bg-purple transition">
+                        Join the community
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================= -->
+    <!-- HOSTS -->
+    <!-- ========================================= -->
+
+    <section id="hosts" class="py-28">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="text-center max-w-2xl mx-auto">
+
+                <p class="text-purple font-bold uppercase tracking-widest text-sm">
+                    Meet the hosts
+                </p>
+
+                <h2 class="font-display font-bold text-5xl mt-3">
+                    The people behind the mic.
+                </h2>
+
+            </div>
+
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-14">
+
+                <div class="bg-ink text-white rounded-[2rem] p-8">
+
+                    <div class="h-72 rounded-2xl bg-purple flex items-center justify-center">
+
+                        <span class="font-display text-9xl font-bold text-white/80">
+                            A
+                        </span>
+
+                    </div>
+
+                    <h3 class="font-display font-bold text-3xl mt-7">
+                        Alex Morgan
+                    </h3>
+
+                    <p class="text-white/50 mt-2">
+                        Host · Writer · Curious human
+                    </p>
+
+                </div>
+
+
+                <div class="bg-lime rounded-[2rem] p-8">
+
+                    <div class="h-72 rounded-2xl bg-[#111] flex items-center justify-center">
+
+                        <span class="font-display text-9xl font-bold text-lime">
+                            J
+                        </span>
+
+                    </div>
+
+                    <h3 class="font-display font-bold text-3xl mt-7">
+                        Jamie Rivera
+                    </h3>
+
+                    <p class="text-black/50 mt-2">
+                        Co-host · Strategist · Story collector
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================= -->
+    <!-- NEWSLETTER -->
+    <!-- ========================================= -->
+
+    <section id="newsletter" class="pb-28">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="bg-purple text-white rounded-[2rem] p-8 sm:p-14 lg:p-20 relative overflow-hidden">
+
+                <div class="absolute -right-24 -top-24 w-80 h-80 border-[60px] border-lime rounded-full"></div>
+
+                <div class="relative max-w-2xl">
+
+                    <p class="text-lime font-bold uppercase tracking-widest text-sm">
+                        Stay in the loop
+                    </p>
+
+                    <h2 class="font-display text-5xl sm:text-6xl font-bold mt-4">
+                        Good ideas.
+                        Straight to your inbox.
+                    </h2>
+
+                    <p class="text-white/70 text-lg mt-6 leading-8">
+                        Get new episode alerts, behind-the-scenes stories and
+                        interesting things we're thinking about.
+                    </p>
+
+                    <form id="newsletterForm" class="mt-8 flex flex-col sm:flex-row gap-3">
+
+                        <input type="email" id="email" placeholder="Your email address" required
+                            class="flex-1 bg-white text-ink px-6 py-4 rounded-full outline-none" />
+
+                        <button type="submit"
+                            class="bg-lime text-ink px-7 py-4 rounded-full font-bold hover:bg-white transition">
+                            Subscribe
+                        </button>
+
+                    </form>
+
+                    <p id="successMessage" class="hidden mt-4 text-lime font-semibold">
+                        You're on the list. Welcome to Domino.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================= -->
+
+    <footer class="bg-ink text-white py-14">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="flex flex-col md:flex-row justify-between gap-10">
+
+                <div>
+
+                    <div class="flex items-center gap-3">
+
+                        <div
+                            class="w-10 h-10 bg-lime text-ink rounded-xl flex items-center justify-center font-display font-bold text-xl">
+                            D
+                        </div>
+
+                        <span class="font-display font-bold text-xl">
+                            dominopodcast
+                        </span>
+
+                    </div>
+
+                    <p class="text-white/40 max-w-sm mt-5 leading-7">
+                        Conversations for curious minds.
+                        New episodes every week.
+                    </p>
+
+                </div>
+
+
+                <div class="flex flex-wrap gap-8 text-sm font-semibold">
+
+                    <a href="#episodes" class="hover:text-lime transition">
+                        Episodes
+                    </a>
+
+                    <a href="#about" class="hover:text-lime transition">
+                        About
+                    </a>
+
+                    <a href="#hosts" class="hover:text-lime transition">
+                        Hosts
+                    </a>
+
+                    <a href="#" class="hover:text-lime transition">
+                        Instagram
+                    </a>
+
+                    <a href="#" class="hover:text-lime transition">
+                        YouTube
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="border-t border-white/10 mt-12 pt-7 flex flex-col sm:flex-row justify-between gap-4 text-sm text-white/30">
+
+                <p>
+                    © 2026 DominoPodcast. All rights reserved.
+                </p>
+
+                <div class="flex gap-6">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ========================================= -->
+    <!-- AUDIO PLAYER MODAL -->
+    <!-- ========================================= -->
+
+    <div id="playerModal"
+        class="hidden fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm items-center justify-center p-6">
+
+        <div class="bg-white text-ink rounded-3xl p-7 max-w-md w-full relative">
+
+            <button onclick="closePlayer()"
+                class="absolute right-5 top-5 w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center">
+                ×
+            </button>
+
+            <div
+                class="w-24 h-24 bg-purple rounded-2xl flex items-center justify-center text-white font-display text-5xl font-bold">
+                D
+            </div>
+
+            <p class="text-purple text-xs uppercase font-bold tracking-widest mt-7">
+                Now playing
+            </p>
+
+            <h3 class="font-display text-2xl font-bold mt-2">
+                The art of starting before you're ready.
+            </h3>
+
+            <p class="text-black/50 mt-2">
+                DominoPodcast · Episode 026
+            </p>
+
+            <div class="mt-8">
+
+                <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+                    <div id="progress" class="h-full bg-purple w-0"></div>
+                </div>
+
+                <div class="flex justify-between text-xs text-black/40 mt-2">
+                    <span id="currentTime">0:00</span>
+                    <span>48:00</span>
+                </div>
+
+            </div>
+
+            <button id="playPauseBtn" onclick="togglePlayback()"
+                class="mx-auto mt-7 w-16 h-16 bg-ink text-white rounded-full flex items-center justify-center text-xl">
+                ▶
+            </button>
+
+            <p class="text-center text-xs text-black/40 mt-5">
+                Demo player — connect your podcast audio URL here.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================================= -->
+
+    <script>
+
+        // Mobile menu
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+
+        // Close mobile menu after clicking a link
+        document.querySelectorAll("#mobileMenu a").forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+            });
+        });
+
+
+        // Newsletter
+        const newsletterForm = document.getElementById("newsletterForm");
+        const successMessage = document.getElementById("successMessage");
+
+        newsletterForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+
+            if (!email) return;
+
+            successMessage.classList.remove("hidden");
+            newsletterForm.reset();
+
+        });
+
+
+        // Player
+        const playerModal = document.getElementById("playerModal");
+        const playPauseBtn = document.getElementById("playPauseBtn");
+        const progress = document.getElementById("progress");
+        const currentTime = document.getElementById("currentTime");
+
+        let playing = false;
+        let timer = null;
+        let seconds = 0;
+
+        function openPlayer() {
+
+            playerModal.classList.remove("hidden");
+            playerModal.classList.add("flex");
+
+            startPlayer();
+
+        }
+
+        function closePlayer() {
+
+            playerModal.classList.add("hidden");
+            playerModal.classList.remove("flex");
+
+            stopPlayer();
+
+        }
+
+        function startPlayer() {
+
+            if (playing) return;
+
+            playing = true;
+            playPauseBtn.textContent = "Ⅱ";
+
+            timer = setInterval(() => {
+
+                seconds++;
+
+                if (seconds >= 2880) {
+                    seconds = 0;
+                }
+
+                const minutes = Math.floor(seconds / 60);
+                const secs = String(seconds % 60).padStart(2, "0");
+
+                currentTime.textContent = `${minutes}:${secs}`;
+
+                const percent = (seconds / 2880) * 100;
+
+                progress.style.width = `${percent}%`;
+
+            }, 1000);
+
+        }
+
+        function stopPlayer() {
+
+            playing = false;
+            clearInterval(timer);
+
+            playPauseBtn.textContent = "▶";
+
+        }
+
+        function togglePlayback() {
+
+            if (playing) {
+                stopPlayer();
+            } else {
+                startPlayer();
+            }
+
+        }
+
+
+        // Close modal with Escape
+        document.addEventListener("keydown", event => {
+
+            if (event.key === "Escape") {
+                closePlayer();
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+```
